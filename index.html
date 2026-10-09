@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cervical Health Symptom Checker</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <header class="site-header">
+    <h1>Cervical Health Symptom Checker</h1>
+    <p>Answer a few questions to find out how soon to see a healthcare provider, and get a summary to share with them.</p>
+  </header>
+
+  <main class="container">
+
+    <!-- Always-visible safety notice -->
+    <div class="notice" role="note">
+      <strong>This is not a diagnosis.</strong> This tool only helps you decide how quickly to seek care.
+      If you feel very unwell, are bleeding heavily, or think it is an emergency, call your local emergency number now.
+    </div>
+
+    <!-- Progress bar -->
+    <div class="progress" aria-hidden="true">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+    <p class="step-label" id="stepLabel"></p>
+
+    <form id="checkerForm" novalidate>
+
+      <!-- STEP 1: About you -->
+      <section class="step" data-step="1">
+        <h2>About you</h2>
+        <p class="hint">Name is optional. Nothing you enter leaves your device.</p>
+
+        <label for="name">Name (optional)</label>
+        <input type="text" id="name" autocomplete="off" />
+
+        <label for="age">Age <span class="req">*</span></label>
+        <input type="number" id="age" min="10" max="110" inputmode="numeric" />
+        <p class="error" id="ageError" hidden>Please enter your age.</p>
+
+        <label for="menopause">Have you gone through menopause? (no periods for 12 months or more)</label>
+        <select id="menopause">
+          <option value="no">No</option>
+          <option value="yes">Yes</option>
+          <option value="na">Not sure / not applicable</option>
+        </select>
+
+        <label for="pregnant">Are you currently pregnant?</label>
+        <select id="pregnant">
+          <option value="no">No</option>
+          <option value="yes">Yes</option>
+          <option value="unsure">Not sure</option>
+        </select>
+      </section>
+
+      <!-- STEP 2: Symptoms (filled in by app.js) -->
+      <section class="step" data-step="2" hidden>
+        <h2>Your symptoms</h2>
+        <p class="hint">Tick anything you have noticed recently. If you tick a symptom, tell us how long it has been going on.</p>
+        <div id="symptomList"></div>
+      </section>
+
+      <!-- STEP 3: Risk factors (filled in by app.js) -->
+      <section class="step" data-step="3" hidden>
+        <h2>Background and screening</h2>
+        <p class="hint">These do not mean you have a problem. They help your provider understand your risk.</p>
+        <div id="riskList"></div>
+
+        <label for="notes">Anything else you would like your provider to know? (optional)</label>
+        <textarea id="notes" rows="4"></textarea>
+      </section>
+
+      <!-- STEP 4: Results -->
+      <section class="step" data-step="4" hidden>
+        <div id="result"></div>
+      </section>
+
+      <!-- Navigation buttons -->
+      <div class="nav">
+        <button type="button" class="btn secondary" id="backBtn">Back</button>
+        <button type="button" class="btn primary" id="nextBtn">Next</button>
+      </div>
+    </form>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>For education and early-reporting support only. Does not replace advice from a qualified healthcare professional.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
